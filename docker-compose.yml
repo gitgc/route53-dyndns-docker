@@ -1,0 +1,21 @@
+---
+version: "3.3"
+
+services:
+  dynamicDNS:
+    image: sjmayotte/route53-dynamic-dns:v1.1
+    container_name: route53-dynamicDNS
+    environment:
+      - AWS_ACCESS_KEY_ID=<REPLACE>
+      - AWS_SECRET_ACCESS_KEY=<REPLACE>
+      - AWS_REGION=<REPLACE>
+      - ROUTE53_HOSTED_ZONE_ID=<REPLACE>
+      - ROUTE53_DOMAIN=<REPLACE>
+      - ROUTE53_TYPE=A
+      - ROUTE53_TTL=60
+      - SEND_EMAIL_SES=true
+      - SES_TO_ADDRESS=<REPLACE>
+      - SES_FROM_ADDRESS=<REPLACE>
+      - UPDATE_FREQUENCY=60000
+      - IPCHECKER=opendns
+    restart: unless-stopped
